@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+{{ super() }}: inicio
+{% endblock %}
+
+{% block page_title %}
+Listado de movimientos
+{% endblock %}
+
+{% block contenido %}
+{{ super() }}
+<table class="paper">
+  <tr>
+    <th class="titulo-tabla">Fecha</th>
+    <th class="titulo-tabla">Concepto</th>
+    <th class="titulo-tabla">Tipo</th>
+    <th class="titulo-tabla numero">Cantidad</th>
+    <th class="titulo-tabla acciones"> Acciones</th>
+  </tr>
+  {% if movs %}
+  {% for mov in movs %}
+  <tr>
+    <td>
+      {% if mov.fecha %}
+      {{ mov.fecha }}
+      {% else %}
+      ---
+      {% endif %}
+    </td>
+    <td>{{ mov.concepto }}</td>
+    <td>
+      {% if mov.tipo == 'I' %}
+      Ingreso
+      {% else %}
+      Gasto
+      {% endif %}
+    </td>
+    <td class="numero">{{ mov.cantidad }}</td>
+    <td class="acciones">
+      <a class="mini-boton" href="/borrar/{{ mov.id }}">&times;</a>
+    </td>
+  </tr>
+  {% if mov.errores %}
+  <tr>
+    <td colspan="4" class="error">
+      {% for error in mov.errores %}
+      {{ error }}.
+      {% endfor %}
+    </td>
+  </tr>
+  {% endif %}
+  {% endfor %}
+  {% else %}
+  <tr>
+    <td colspan="4" class="lista-vacia">No hay movimientos que mostrar</td>
+  </tr>
+  {% endif %}
+</table>
+{% endblock %}

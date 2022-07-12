@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+{{super() }}: borrando
+{% endblock %}
+
+{% block page_title %}
+    {% if resultado  %}
+        has eliminado el movimiendo correctamente.
+    {% else %}
+        ha ocurrido un error al borrar
+    {% endif %}
+{%  endblock %}

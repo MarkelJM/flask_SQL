@@ -31,3 +31,18 @@ class DBManager:
         conexion.close()
 
         return self.movimientos
+
+    def borrar(self, id):
+        consulta = "DELETE FROM movimientos WHERE id=?"
+        conexion = sqlite3.connect(self.ruta)
+        cursos = conexion.cursor()
+        resultado = False
+        try:
+            # DELETE FROM movimientos WHERE id=3
+            cursos.execute(consulta, (id,))
+            conexion.commit()  # ejecuta
+            resultado = True
+        except:
+            conexion.rollback()  # para que de marcha atras, del borrado
+        conexion.close()
+        return resultado
