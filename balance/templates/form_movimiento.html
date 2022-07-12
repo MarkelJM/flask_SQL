@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+{{super()}}: Modificar movimiento
+{% endblock %}
+
+{% block page_title %}
+Modificar movimiento
+
+{%endblock%}
+
+{% block contenido%}
+{{super()}}
+
+<form action="/modificar">
+    {{ form.csrf_token }}
+    {{ form.id() }}
+
+    <div class="campo-formulario">
+        {{ form.fecha.label}}
+        {{form.fecha() }}
+
+    </div>
+    <div class="campo-formulario">
+        {{ form.concepto.label}}
+        {{form.concepto() }}
+    </div>
+    
+    <div class="campo-formulario">
+        {% for campo in form.tipo %}
+        {{campo}}
+        {{campo.label}}
+        {% endfor %}
+
+        <div class="campo-formulario">
+            {{ form.cantidad.label}}
+            {{form.cantidad() }}
+
+        </div>
+
+        <div class="acciones">
+            {{ form.submit}}
+
+
+        </div>
+
+    </div>
+</form>
+
+{% endblock %}
