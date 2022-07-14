@@ -16,7 +16,7 @@ Listado de movimientos
     <th class="titulo-tabla">Concepto</th>
     <th class="titulo-tabla">Tipo</th>
     <th class="titulo-tabla numero">Cantidad</th>
-    <th class="titulo-tabla acciones"> Acciones</th>
+    <th class="titulo-tabla acciones">Acciones</th>
   </tr>
   {% if movs %}
   {% for mov in movs %}
@@ -39,6 +39,7 @@ Listado de movimientos
     <td class="numero">{{ mov.cantidad }}</td>
     <td class="acciones">
       <a class="mini-boton" href="/borrar/{{ mov.id }}">&times;</a>
+      <a class="mini-boton" href="/modificar/{{ mov.id }}">Editar</a>
     </td>
   </tr>
   {% if mov.errores %}
